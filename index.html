@@ -1,0 +1,689 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Len Johns Shaji - Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+		/* Hover popup/peek animation for portfolio and certification cards */
+		.article-hover-helper { position:relative; overflow:visible; }
+
+		/* common card styles */
+		article.item { transition: transform 220ms cubic-bezier(.25,.8,.25,1), box-shadow 220ms ease; will-change: transform; }
+		article.item:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 12px 30px rgba(0,0,0,0.35); z-index: 3; }
+
+		/* Slide-up overlay for portfolio images: initial hidden, slides up on hover */
+		.item .hover-meta { position:absolute; left:0; right:0; bottom:0; padding:1rem; background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%); color:#fff; transform: translateY(100%); transition: transform 280ms cubic-bezier(.2,.9,.2,1); pointer-events:none; }
+		article.item:hover .hover-meta { transform: translateY(0%); pointer-events:none; }
+
+		/* Small badge that appears on hover (top-left) */
+		.item .hover-badge { position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.92); color:#111; padding:6px 10px; border-radius:999px; font-size:0.8rem; font-weight:700; opacity:0; transform:translateY(-6px) scale(0.98); transition: all 220ms cubic-bezier(.2,.9,.2,1); }
+		article.item:hover .hover-badge { opacity:1; transform:translateY(0) scale(1); }
+
+		/* Certification cards: subtle pop and lift, make header more prominent */
+		.cert-grid article.item { transition: transform 240ms cubic-bezier(.25,.8,.25,1), box-shadow 240ms ease, background-color 240ms ease; }
+		.cert-grid article.item:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 14px 30px rgba(0,0,0,0.28); background-color: #ffffff; }
+		.cert-grid article.item header h4 { margin:0; font-size:1rem; font-weight:700; }
+
+		/* Make sure overlay respects existing image fit container */
+		.image.fit { position:relative; }
+		.image.fit img, .image.fit iframe { display:block; }
+
+						/* Social list in header - reuse nav concept (vertical stack) */
+						.social-list { list-style:none; margin:0; padding:0; }
+						.social-list li { margin:0 0 0.35rem 0; }
+						/* Match the nav link typography: not bold, same size/color/font */
+						.social-list a { display:flex; align-items:center; gap:0.6rem; color:inherit; text-decoration:none; padding:0.32rem 0.25rem; font-weight:400; font-size:0.95rem; font-family:inherit; }
+						.social-list a .icon { width:1.2rem; text-align:center; font-size:1.05rem; }
+						.social-list a .label { display:inline-block; font-weight:400; font-size:inherit; }
+						/* match nav hover feel */
+						/* avoid shifting layout on hover (prevents horizontal scrollbar) */
+						.social-list a:hover { color:#2d6cdf; transform:none; }
+						/* prevent scrollbars if container is small */
+						.social-list { overflow:visible; max-height:none; }
+						@media (max-width:736px) {
+							.social-list { display:flex; flex-direction:row; gap:0.6rem; }
+							.social-list li { margin:0; }
+						}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+
+					<!-- Logo -->
+						<div id="logo">
+							<span class="image avatar48"><img src="images/len.jpg" alt="" /></span>
+							<h1 id="title">Len Johns Shaji</h1>
+							<p>ML Engineer</p>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
+								<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
+								<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+								<li><a href="#Certifications" id="certification-link"><span class="icon solid fa-certificate">Certifications</span></a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+				<div class="bottom">
+
+						<!-- Social links re-used as a vertical list similar to main nav -->
+						<ul class="social-list">
+							<li><a href="https://www.linkedin.com/in/ljs-s" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span class="icon brands fa-linkedin" aria-hidden="true"></span><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/LEN-J-S" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><span class="icon brands fa-github" aria-hidden="true"></span><span class="label">Github</span></a></li>
+							<li><a href="https://flightguard.ai" target="_blank" rel="noopener noreferrer" aria-label="Website"><span class="icon brands fa-dribbble" aria-hidden="true"></span><span class="label">Flight Guard AI</span></a></li>
+							<li><a href="mailto:lshaji@uh.edu" aria-label="Email"><span class="icon solid fa-envelope" aria-hidden="true"></span><span class="label">Contact</span></a></li>
+						</ul>
+
+				</div>
+
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Intro -->
+					<section id="top" class="one dark cover" style="position:relative;overflow:hidden;">
+						<div style="position:absolute;top:0;left:0;width:100vw;height:100vh;z-index:0;overflow:hidden;background:#000;">
+							<div style="position:absolute;top:0;left:0;width:100vw;height:100vh;z-index:0;overflow:hidden;background:#000;">
+								<iframe id="bg-video" src="https://www.youtube.com/embed/q5qQVNUd404?autoplay=1&mute=1&controls=0&loop=1&playlist=q5qQVNUd404&modestbranding=1&showinfo=0&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;top:42%;left:42%;width:150vw;height:100vh;transform:translate(-50%,-50%);opacity:0.7;object-fit:cover;pointer-events:none;"></iframe>
+								<div style="position:absolute;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:1;"></div>
+							</div>
+							<img id="bg-fallback" src="images/banner.jpg" alt="Background" style="position:absolute;top:0;left:0;width:100vw;height:100vh;object-fit:cover;opacity:0.7;display:none;" />
+						</div>
+						<style>
+							#top { position: relative; overflow: hidden; }
+							/* All layout is now inline on the video tag for maximum specificity */
+							#top .container { position: relative; z-index: 1; }
+						</style>
+						<div class="container" style="position:relative;z-index:1;">
+							<header>
+								<h2 class="alt"><br />Hi! I'm <strong>Len Johns Shaji</strong>, founder and AI lead<br />
+								of <a href="https://flightguard.ai/">Flight Guard AI</a> <span style="font-size:0.8em;font-weight:normal;">(Top 4 AI Innovations | US)</span></h2>
+								<p><br /></p>
+							</header>
+							<footer>
+								<a href="#portfolio" class="button scrolly">View My Projects</a>
+							</footer>
+						</div>
+						<script>
+							// Autoplay fallback for browsers that block autoplay
+							const vid = document.getElementById('bg-video');
+							const fallback = document.getElementById('bg-fallback');
+							function tryPlay() {
+								if (vid) {
+									const playPromise = vid.play();
+									if (playPromise !== undefined) {
+										playPromise.catch(function() {
+											// Autoplay blocked, show play button
+											let btn = document.createElement('button');
+											btn.textContent = 'Play Video';
+											btn.style.position = 'absolute';
+											btn.style.left = '50%';
+											btn.style.top = '50%';
+											btn.style.transform = 'translate(-50%, -50%)';
+											btn.style.zIndex = 5;
+											btn.style.padding = '1em 2em';
+											btn.style.fontSize = '1.2em';
+											btn.style.background = '#222';
+											btn.style.color = '#fff';
+											btn.style.border = 'none';
+											btn.style.borderRadius = '0.5em';
+											btn.style.cursor = 'pointer';
+											btn.className = 'bg-play-button';
+											document.getElementById('top').appendChild(btn);
+											btn.addEventListener('click', function() { vid.muted = false; vid.play(); btn.remove(); });
+										});
+									}
+									vid.onerror = function() {
+										// If video fails to load, show fallback image
+										if (fallback) fallback.style.display = 'block';
+										vid.style.display = 'none';
+									};
+								}
+							}
+							if (document.readyState === 'complete' || document.readyState === 'interactive') {
+								tryPlay();
+							} else {
+								document.addEventListener('DOMContentLoaded', tryPlay);
+							}
+						</script>
+					</section>
+
+				<!-- Portfolio -->
+					<section id="portfolio" class="two">
+						<div class="container">
+
+							<header>
+								<h2>Portfolio</h2>
+							</header>
+
+							<p><strong style="color:#111;">My work spans multiple disciplines, including Computer, Mechanical, Robotics, AI, Cybersecurity, Business, and Engineering. I’m always eager to take on challenges and drive innovation.</strong></p>
+
+							<div class="row">
+								<div class="col-4 col-12-mobile">
+									<!-- 1: Flight Guard AI - IR -->
+									<a href="https://www.kaggle.com/competitions/google-gemma-3n-hackathon/writeups/flightguard-ai" target="_blank" style="text-decoration:none;color:inherit;display:block;">
+										<article class="item" style="margin-bottom:2em;">
+											<div class="image fit" style="position:relative;width:100%;height:0;padding-bottom:56.25%;overflow:hidden;">
+												<img id="gd-slide1" src="images/GD_1.png" alt="Gemma Slide 1" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.5s;opacity:1;" />
+												<img id="gd-slide2" src="images/GD_2.png" alt="Gemma Slide 2" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.5s;opacity:0;" />
+											</div>
+											<header>
+												<h3>
+													<strong style="font-weight:900;font-size:1.25em;letter-spacing:0.5px;">Google - The Gemma 3n Impact Challenge</strong>
+													<br/>Flight Guard AI - IR
+												</h3>
+											</header>
+										</article>
+									</a>
+									<script>
+										// Slideshow for Gemma images
+										(function() {
+											var slide1 = document.getElementById('gd-slide1');
+											var slide2 = document.getElementById('gd-slide2');
+											if (slide1 && slide2) {
+												var showing = 1;
+												setInterval(function() {
+													if (showing === 1) {
+														slide1.style.opacity = 0;
+														slide2.style.opacity = 1;
+														showing = 2;
+													} else {
+														slide1.style.opacity = 1;
+														slide2.style.opacity = 0;
+														showing = 1;
+													}
+												}, 5000);
+											}
+										})();
+									</script>
+								</div>
+								<div class="col-4 col-12-mobile">
+									<!-- 2: Flight Guard AI - 4th -->
+									<a href="https://flightguard.ai" target="_blank" style="text-decoration:none;color:inherit;display:block;">
+										<article class="item" style="margin-bottom:2em;">
+											<div class="image fit" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+												<iframe src="https://www.youtube.com/embed/q5qQVNUd404?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&loop=1&playlist=q5qQVNUd404&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;pointer-events:none;"></iframe>
+											</div>
+											<header>
+												<h3>
+													<strong style="font-weight:900;font-size:1.25em;letter-spacing:0.5px;">Texas A&amp;M - Business and AI National Undergraduate Pitch Competition 2025</strong>
+													<br/>Flight Guard AI - 4th
+												</h3>
+											</header>
+										</article>
+									</a>
+								</div>
+								<div class="col-4 col-12-mobile">
+									<!-- 3: Flight Guardian AI - 3rd (MLH) -->
+									<a href="https://github.com/LEN-J-S/Flight-Guardian-AI_MLH." target="_blank" style="text-decoration:none;color:inherit;display:block;">
+										<article class="item" style="margin-bottom:2em;">
+											<div class="image fit" style="position:relative;width:100%;height:0;padding-bottom:56.25%;overflow:hidden;">
+												<img id="mlh-slide" src="images/MLH_1.png" alt="MLH Slide 1" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.5s;opacity:1;" />
+												<img id="mlh-slide2" src="images/MLH_2.png" alt="MLH Slide 2" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.5s;opacity:0;" />
+											</div>
+											<header>
+												<h3>
+													<strong style="font-weight:900;font-size:1.25em;letter-spacing:0.5px;">Major League Hacking 2025 - Tidal Hack</strong>
+													<br/>Flight Guardian AI - 3rd
+												</h3>
+											</header>
+										</article>
+									</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-4 col-12-mobile">
+									<!-- 4: Cybersecurity Track Winner (Riverhacks) -->
+									<a href="https://github.com/LEN-J-S/Riverhacks-2025" target="_blank" style="text-decoration:none;color:inherit;display:block;">
+										<article class="item" style="margin-bottom:2em;">
+											<div class="image fit" style="position:relative;width:100%;height:0;padding-bottom:56.25%;overflow:hidden;">
+												<img id="riv-slide1" src="images/RIV_1.jpg" alt="RiverHacks Slide 1" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.5s;opacity:1;" />
+												<img id="riv-slide2" src="images/RIV_2.jpg" alt="RiverHacks Slide 2" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.5s;opacity:0;" />
+												<img id="riv-slide3" src="images/RIV_3.jpg" alt="RiverHacks Slide 3" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.5s;opacity:0;" />
+											</div>
+											<header>
+												<h3>
+													<strong style="font-weight:900;font-size:1.25em;letter-spacing:0.5px;">RiverHacks Austin 2025</strong>
+													<br/>Cybersecurity Track Winner
+												</h3>
+											</header>
+										</article>
+									</a>
+								</div>
+								<div class="col-4 col-12-mobile">
+									<!-- 5: Automatic Titer Tool - 2nd -->
+									<a href="https://github.com/LEN-J-S/Automatic-Titer-Tool-Robotics-" target="_blank" style="text-decoration:none;color:inherit;display:block;">
+										<article class="item" style="margin-bottom:2em;">
+											<div class="image fit" style="position:relative;width:100%;height:0;padding-bottom:56.25%;overflow:hidden;">
+												<iframe src="https://www.youtube.com/embed/5_zE4ZxBe70?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&loop=1&playlist=5_zE4ZxBe70&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;pointer-events:none;"></iframe>
+											</div>
+											<header>
+												<h3>
+													<strong style="font-weight:900;font-size:1.25em;letter-spacing:0.5px;">Senior Design | Computer &amp; Electrical Engineering 2025</strong>
+													<br/>Automatic Titer Tool - 2nd
+												</h3>
+											</header>
+										</article>
+									</a>
+								</div>
+								<div class="col-4 col-12-mobile">
+									<!-- 6: Advanced Challenge Winner (NASA) -->
+									<a href="https://github.com/LEN-J-S/Emergency-Crew-Transport-Litter-for-Space_NASA." target="_blank" style="text-decoration:none;color:inherit;display:block;">
+										<article class="item" style="margin-bottom:2em;">
+											<div class="image fit" style="position:relative;width:100%;height:0;padding-bottom:56.25%;overflow:hidden;">
+												<img id="nas-slide1" src="images/NAS_1.jpg" alt="NASA Slide 1" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.5s;opacity:1;" />
+												<img id="nas-slide2" src="images/NAS_2.jpg" alt="NASA Slide 2" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.5s;opacity:0;" />
+												<img id="nas-slide3" src="images/NAS_3.jpg" alt="NASA Slide 3" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.5s;opacity:0;" />
+												<img id="nas-slide4" src="images/NAS_4.png" alt="NASA Slide 4" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.5s;opacity:0;" />
+											</div>
+											<header>
+												<h3>
+													<strong style="font-weight:900;font-size:1.25em;letter-spacing:0.5px;">NASA JSC Hack 2024</strong>
+													<br/>Advanced Challenge Winner
+												</h3>
+											</header>
+										</article>
+									</a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-4 col-12-mobile">
+									<!-- 7: Flight Guard AI - 3rd (WCE) duplicate/extra -->
+									<a href="https://www.linkedin.com/posts/ljs-s_on-march-6th-i-had-the-incredible-opportunity-activity-7320689305104920577-bwFp?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEUCwHgBBYKX057zfGa0Igg7bhqLxhQnfxk" target="_blank" style="text-decoration:none;color:inherit;display:block;">
+										<article class="item" style="margin-bottom:2em;">
+											<div class="image fit" style="position:relative;width:100%;height:0;padding-bottom:120%;overflow:hidden;">
+												<img id="wce-slide1" src="images/WCE_1.jpg" alt="WCE Slide 1" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.5s;opacity:1;" />
+												<img id="wce-slide2" src="images/WCE_2.jpg" alt="WCE Slide 2" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:opacity 0.5s;opacity:0;" />
+											</div>
+											<header>
+												<h3>
+													<strong style="font-weight:900;font-size:1.25em;letter-spacing:0.5px;">WCE Pitch Competition 2025<br/> (Prototype Track)</strong>
+													<br/>Flight Guard AI - 3rd
+												</h3>
+											</header>
+										</article>
+									</a>
+								</div>
+									<div class="col-4 col-12-mobile">
+										<!-- 8: Hack Reddit 2025 - My Reflex -->
+										<a href="https://github.com/LEN-J-S/Hack-Reddit-2025" onclick="window.open('https://github.com/LEN-J-S/Hack-Reddit-2025','_blank');window.open('https://www.reddit.com/r/My_RefleX/','_blank');return false;" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;display:block;">
+											<article class="item" style="margin-bottom:2em;">
+												<div class="image fit" style="position:relative;width:100%;height:0;padding-bottom:56.25%;overflow:hidden;">
+													<img src="images/RD_1.png" alt="Hack Reddit - My Reflex" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" />
+												</div>
+												<header>
+													<h3>
+														<strong style="font-weight:900;font-size:1.25em;letter-spacing:0.5px;">Hack Reddit 2025</strong>
+														<br/>My Reflex - Built for Feed
+													</h3>
+												</header>
+											</article>
+										</a>
+									</div>
+									<div class="col-4 col-12-mobile">
+									<!-- Electronics Project 2023 - Boeing MCAS System -->
+									<a href="https://github.com/LEN-J-S/Boeing_MCAS_System" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;display:block;">
+										<article class="item" style="margin-bottom:2em;">
+											<div class="image fit" style="position:relative;width:100%;height:0;padding-bottom:120%;overflow:hidden;">
+																			<iframe src="https://www.youtube.com/embed/hT2mqvJtXzM?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&loop=1&playlist=hT2mqvJtXzM&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transform:scale(1.5);transform-origin:center center;pointer-events:none;">
+											</iframe>
+											</div>
+											<header>
+												<h3>
+													<strong style="font-weight:900;font-size:1.25em;letter-spacing:0.5px;">Electronics Project 2023</strong>
+													<br/>Boeing MCAS System - Best Creative Project
+												</h3>
+											</header>
+										</article>
+									</a>
+								</div>
+							</div>
+						</div>
+					</section>
+
+				<!-- About Me -->
+					<section id="about" class="three">
+						<div class="container">
+
+							<header>
+								<h2>About Me</h2>
+							</header>
+
+							<div class="image featured"><img src="images/pic08.png" alt="" /></div>
+
+							<p><strong style="color:#111;font-weight:800;">Computer Engineering graduate with minors in Mathematics and Computer Science</strong><br/><strong>Expert in Data Science, Machine Learning, Embedded Systems, and Software Development. Founder of Flight Guard AI, an award-winning aviation safety startup recognized as a Top 4 AI Innovation in the U.S. Winner of multiple cross-disciplinary engineering and AI competitions, including NASA JSC, MLH, Cybersecurity, and AI Innovation challenges, passionate about creating intelligent systems for safety and automation.</strong></p>
+
+						</div>
+					</section>
+
+					<!-- Certifications -->
+					<section id="Certifications" class="four">
+						<div class="container cert-grid">
+
+							<header>
+								<h2>Certifications</h2>
+							</header>
+
+							<p><strong style="color:#111;">Below are selected certifications and micro-credentials I've earned. Click any card to open the certificate or verification link.</stong></p>
+
+							<style>
+								/* Certification card grid: uniform card heights and centered logos */
+								.cert-grid .row { margin-bottom: 1.25em; }
+								/* Ensure each card uses box-sizing and a consistent min-height so rows align */
+								.cert-grid .item { background: #fff; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); overflow: hidden; height: 100%; display:flex; flex-direction:column; box-sizing: border-box; min-height:220px; }
+								.cert-grid .image.fixed { width:100%; flex:0 0 150px; height:150px; display:block; background:#fff; position:relative; }
+								.cert-grid .image.fixed img { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); max-height:86%; max-width:86%; object-fit:contain; }
+								.cert-grid article.item header { padding: 1em; text-align:center; display:flex; align-items:center; justify-content:center; flex:1 1 auto; }
+								.cert-grid h3 { margin: 1.5em 0 0.5em; }
+								/* Ensure columns stretch to same height in each row */
+								.cert-grid .row .col-3, .cert-grid .row .col-4, .cert-grid .row .col-6 { display:flex; }
+								/* Support both anchor-wrapped cards and direct article children so all cards fill column height */
+								.cert-grid .row .col-3 > a, .cert-grid .row .col-4 > a, .cert-grid .row .col-6 > a,
+								.cert-grid .row .col-3 > article, .cert-grid .row .col-4 > article, .cert-grid .row .col-6 > article { display:flex; flex:1 1 auto; }
+								.cert-grid .row .col-3 > a article, .cert-grid .row .col-4 > a article, .cert-grid .row .col-6 > a article,
+								.cert-grid .row .col-3 > article, .cert-grid .row .col-4 > article, .cert-grid .row .col-6 > article { flex:1 1 auto; display:flex; flex-direction:column; }
+								/* Slightly smaller header text for compactness and to reduce overflow */
+								.cert-grid article.item header h4 { margin:0; font-size:0.95rem; line-height:1.2; }
+								@media (max-width:736px) {
+									.cert-grid .image.fixed { height:120px; flex:0 0 120px; }
+									.cert-grid .item { min-height:200px; }
+								}
+							</style>
+
+							<!-- NASA Group -->
+							<h3><strong>NASA</strong></h3>
+							<div class="row">
+								<div class="col-3 col-12-mobile">
+									<a href="Certificate/MCA Completion - Certificate.pdf" target="_blank" style="text-decoration:none;color:inherit;display:block;">
+										<article class="item">
+											<div class="image fixed">
+												<img src="images/NASA.png" alt="NASA" />
+											</div>
+											<header>
+												<h4>NASA Proposal Writing and Evaluation Experience Academy</h4>
+											</header>
+										</article>
+									</a>
+								</div>
+								<div class="col-3 col-12-mobile">
+									<a href="Certificate/MCA Completion - Certificate.pdf" target="_blank" style="text-decoration:none;color:inherit;display:block;">
+										<article class="item">
+											<div class="image fixed">
+												<img src="images/NASA.png" alt="NASA" />
+											</div>
+											<header>
+												<h4>NASA Mission Concept Academy</h4>
+											</header>
+										</article>
+									</a>
+								</div>
+								<div class="col-3 col-12-mobile">
+									<a href="https://www.credly.com/badges/afb68b9c-4ae9-43ac-b651-1f953c98c244/linked_in_profile" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;display:block;">
+										<article class="item">
+											<div class="image fixed">
+												<img src="images/NASA.png" alt="NASA Open Science 101" />
+											</div>
+											<header>
+												<h4>NASA Open Science 101</h4>
+											</header>
+										</article>
+									</a>
+								</div>
+								<div class="col-3 col-12-mobile">
+									<a href="https://badgr.com/public/assertions/hRdgZbc1R-SU7RsH03yj2w" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;display:block;">
+										<article class="item">
+											<div class="image fixed">
+												<img src="images/ASU.png" alt="ASU" />
+											</div>
+											<header>
+												<h4>The Process and Lifetime of a Space Mission (ASU)</h4>
+											</header>
+										</article>
+									</a>
+								</div>
+							</div>
+
+							<!-- NVIDIA Group -->
+							<h3><strong>NVIDIA</strong></h3>
+							<div class="row">
+								<div class="col-6 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/NVIDIA.png" alt="NVIDIA" />
+										</div>
+										<header>
+											<h4>Fundamentals of Deep Learning</h4>
+										</header>
+									</article>
+								</div>
+								<div class="col-6 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/NVIDIA.png" alt="NVIDIA" />
+										</div>
+										<header>
+											<h4>Fundamentals of Accelerated Data Science</h4>
+										</header>
+									</article>
+								</div>
+							</div>
+
+							<!-- HPE-DSI Group -->
+							<h3><strong>HPE - Data Science Institute</strong></h3>
+							<div class="row">
+								<div class="col-3 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/IML.png" alt="IML" />
+										</div>
+										<header>
+											<h4>Introduction to Machine Learning</h4>
+										</header>
+									</article>
+								</div>
+								<div class="col-3 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/IDL.png" alt="IDL" />
+										</div>
+										<header>
+											<h4>Introduction to Deep Learning</h4>
+										</header>
+									</article>
+								</div>
+								<div class="col-3 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/PY.png" alt="PY" />
+										</div>
+										<header>
+											<h4>Scientific Programming with Python</h4>
+										</header>
+									</article>
+								</div>
+								<div class="col-3 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/EADS.png" alt="EADS" />
+										</div>
+										<header>
+											<h4>Excel for Applied Data Science</h4>
+										</header>
+									</article>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-3 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/PDM.png" alt="PDM" />
+										</div>
+										<header>
+											<h4>Principles of Data Management</h4>
+										</header>
+									</article>
+								</div>
+								<div class="col-3 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/ICC.png" alt="ICC" />
+										</div>
+										<header>
+											<h4>Introduction to Cluster Computing</h4>
+										</header>
+									</article>
+								</div>
+								<div class="col-3 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/R.png" alt="R" />
+										</div>
+										<header>
+											<h4>R for Data Science</h4>
+										</header>
+									</article>
+								</div>
+								<div class="col-3 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/B.png" alt="B" />
+										</div>
+										<header>
+											<h4>Introduction to Bioinformatics and NGS Data Analysis</h4>
+										</header>
+									</article>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-3 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/OMP.png" alt="OMP" />
+										</div>
+										<header>
+											<h4>Parallel Computing with OpenMP</h4>
+										</header>
+									</article>
+								</div>
+								<div class="col-3 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/J.png" alt="J" />
+										</div>
+										<header>
+											<h4>Data Science and Scientific Computing using Julia</h4>
+										</header>
+									</article>
+								</div>
+								<div class="col-3 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/SAI.png" alt="SAI" />
+										</div>
+										<header>
+											<h4>Selected Topics in AI</h4>
+										</header>
+									</article>
+								</div>
+								<div class="col-3 col-12-mobile">
+									<article class="item">
+										<div class="image fixed">
+											<img src="images/MCDS.png" alt="MCDS" />
+										</div>
+										<header>
+											<h4>Micro-credential in Advanced Data Science</h4>
+										</header>
+									</article>
+								</div>
+							</div>
+
+							<!-- MITx Group -->
+							<h3><strong>MITx</strong></h3>
+							<div class="row">
+								<div class="col-4 col-12-mobile">
+									<a href="https://courses.edx.org/certificates/fbdfe5aa3601410ca8ea736ee83db717" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;display:block;">
+										<article class="item">
+											<div class="image fixed">
+												<img src="images/MITX.png" alt="MITX" />
+											</div>
+											<header>
+												<h4>Introduction to Computer Science and Programming Using Python</h4>
+											</header>
+										</article>
+									</a>
+								</div>
+							</div>
+
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<div id="footer">
+
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li>&copy; 2025 Len Johns Shaji. All Rights Reserved</li>
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script>
+			// Generic slideshow initializer for stacked images inside .image.fit
+			(function() {
+				var INTERVAL = 5000; // 5s per slide
+				function initSlides() {
+					var containers = document.querySelectorAll('.image.fit');
+					containers.forEach(function(container) {
+						// only consider plain images (skip iframes/video)
+						var imgs = Array.from(container.querySelectorAll('img'));
+						if (!imgs || imgs.length < 2) return;
+						// ensure positioning and transitions
+						imgs.forEach(function(img, i) {
+							img.style.transition = img.style.transition || 'opacity 0.6s';
+							img.style.opacity = (i === 0) ? '1' : '0';
+							img.style.position = img.style.position || 'absolute';
+							img.style.top = img.style.top || '0';
+							img.style.left = img.style.left || '0';
+							img.style.width = img.style.width || '100%';
+							img.style.height = img.style.height || '100%';
+						});
+						var current = 0;
+						setInterval(function() {
+							var next = (current + 1) % imgs.length;
+							imgs[current].style.opacity = '0';
+							imgs[next].style.opacity = '1';
+							current = next;
+						}, INTERVAL);
+					});
+				}
+				if (document.readyState === 'loading') {
+					document.addEventListener('DOMContentLoaded', initSlides);
+				} else {
+					initSlides();
+				}
+			})();
+			</script>
+
+	</body>
+</html>
